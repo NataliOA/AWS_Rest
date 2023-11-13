@@ -47,7 +47,7 @@ public class AlumnoRepository {
             verificado = false;
             msg += "Los nombres deben ser cadena de texto y no estar vacíos. ";
         }
-        if((!info.getApellidos().isEmpty()||info.getApellidos()!=null)||!validarString(info.getApellidos())){
+        if((info.getApellidos().isEmpty()||info.getApellidos()==null)||!validarString(info.getApellidos())){
             verificado = false;
             msg += "Los apellidos deben ser cadena de texto y no estar vacíos. ";
         }
@@ -55,7 +55,7 @@ public class AlumnoRepository {
             verificado = false;
             msg += "La matrícula debe ser un valor mayor a 0. ";
         }
-        if(info.getPromedio()<0.00&&info.getPromedio()>100.00){
+        if(info.getPromedio()<0.00||info.getPromedio()>100.00){
             verificado = false;
             msg += "El promedio debe ser un valor entre 0.00 y 100.00. ";
         }
@@ -67,7 +67,7 @@ public class AlumnoRepository {
             Integer.parseInt(str);
             return false;
         } catch (Exception e) {
-            return true;
+            return !str.matches(".*\\d+.*");
         }
     }
 

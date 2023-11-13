@@ -46,7 +46,7 @@ public class ProfesorRepository {
             verificado = false;
             msg += "Los nombres deben ser cadena de texto y no estar vacíos. ";
         }
-        if((!info.getApellidos().isEmpty()||info.getApellidos()!=null)||!validarString(info.getApellidos())){
+        if((info.getApellidos().isEmpty()||info.getApellidos()==null)||!validarString(info.getApellidos())){
             verificado = false;
             msg += "Los apellidos deben ser cadena de texto y no estar vacíos. ";
         }
@@ -66,7 +66,7 @@ public class ProfesorRepository {
             Integer.parseInt(str);
             return false;
         } catch (Exception e) {
-            return true;
+            return !str.matches(".*\\d+.*");
         }
     }
 
@@ -77,7 +77,7 @@ public class ProfesorRepository {
         if (profAEditar != null) {
             msg = new String();
             if(verifInfo(profAux)){
-                profAEditar.setNumeroEmpleado(profAux.getHorasClase());
+                profAEditar.setNumeroEmpleado(profAux.getNoEmpleado());
                 profAEditar.setNombres(profAux.getNombres());
                 profAEditar.setApellidos(profAux.getApellidos());
                 profAEditar.setHorasClase(profAux.getHorasClase());

@@ -36,10 +36,10 @@ public class AlumnoController {
         responseDTO resp;
         if(Alumno!=null){
             resp = new responseDTO(null, Alumno);
-            return new ResponseEntity<>(resp, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(resp, HttpStatus.OK);
         }else{
             resp = new responseDTO(alumnoRep.getMsg(), Alumno);
-            return new ResponseEntity<>(resp, HttpStatus.OK);
+            return new ResponseEntity<>(resp, HttpStatus.NOT_FOUND);
         }
         
     }
@@ -51,10 +51,10 @@ public class AlumnoController {
         responseDTO resp;
         if(Alumno!=null){
             resp = new responseDTO(null, Alumno);
-            return new ResponseEntity<>(resp, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(resp, HttpStatus.CREATED);
         }else{
             resp = new responseDTO(alumnoRep.getMsg(), Alumno);
-            return new ResponseEntity<>(resp, HttpStatus.CREATED);
+            return new ResponseEntity<>(resp, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -65,10 +65,10 @@ public class AlumnoController {
         responseDTO resp;
         if(Alumno!=null){
             resp = new responseDTO(null, Alumno);
-            return new ResponseEntity<>(resp, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(resp, HttpStatus.OK);
         }else{
             resp = new responseDTO(alumnoRep.getMsg(), Alumno);
-            return new ResponseEntity<>(resp, HttpStatus.OK);
+            return new ResponseEntity<>(resp, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -79,10 +79,10 @@ public class AlumnoController {
         responseDTO resp;
         if(AlumnoB!=null){
             resp = new responseDTO(null, AlumnoB);
-            return new ResponseEntity<>(resp, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(resp, HttpStatus.OK);
         }else{
             resp = new responseDTO(alumnoRep.getMsg(), AlumnoB);
-            return new ResponseEntity<>(resp, HttpStatus.OK);
+            return new ResponseEntity<>(resp, HttpStatus.NOT_FOUND);
         }
     }
 

@@ -37,10 +37,10 @@ public class ProfesorController {
         responseDTO resp;
         if(Prof != null){
             resp = new responseDTO(null, Prof);
-            return new ResponseEntity<>(resp, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(resp, HttpStatus.OK);
         }else{
             resp = new responseDTO(profesorRep.getMsg(), Prof);
-            return new ResponseEntity<>(resp, HttpStatus.OK);
+            return new ResponseEntity<>(resp, HttpStatus.NOT_FOUND);
         }
         
     }
@@ -52,10 +52,10 @@ public class ProfesorController {
         responseDTO resp;
         if(Profesor != null){
             resp = new responseDTO(null, Profesor);
-            return new ResponseEntity<>(resp, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(resp, HttpStatus.CREATED);
         }else{
             resp = new responseDTO(profesorRep.getMsg(), Profesor);
-            return new ResponseEntity<>(resp, HttpStatus.CREATED);
+            return new ResponseEntity<>(resp, HttpStatus.BAD_REQUEST);
         }
         
     }
@@ -67,10 +67,10 @@ public class ProfesorController {
         responseDTO resp;
         if(Profesor != null){
             resp = new responseDTO(null, Profesor);
-            return new ResponseEntity<>(resp, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(resp, HttpStatus.OK);
         }else{
             resp = new responseDTO(profesorRep.getMsg(), Profesor);
-            return new ResponseEntity<>(resp, HttpStatus.OK);
+            return new ResponseEntity<>(resp, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -81,11 +81,11 @@ public class ProfesorController {
         responseDTO resp;
         if(ProfesorB != null){
             resp = new responseDTO(null, ProfesorB);
-            return new ResponseEntity<>(resp, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(resp, HttpStatus.OK);
         }
         else{
             resp = new responseDTO(profesorRep.getMsg(), ProfesorB);
-            return new ResponseEntity<>(resp, HttpStatus.OK);
+            return new ResponseEntity<>(resp, HttpStatus.NOT_FOUND);
         }
     }
 }
