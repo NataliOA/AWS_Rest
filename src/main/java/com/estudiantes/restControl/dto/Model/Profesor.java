@@ -6,8 +6,8 @@ import lombok.*;
 @AllArgsConstructor
 public class Profesor {
     private int id;
-    private int numeroEmpleado;
+    private int noEmpleado;
     private String nombres;
     private String apellidos;
-    private  int horasClase;
+    private int horasClase;
 }

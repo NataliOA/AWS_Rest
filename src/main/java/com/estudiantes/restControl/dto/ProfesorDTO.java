@@ -9,5 +9,5 @@ public class ProfesorDTO {
     private int numeroEmpleado;
     private String nombres;
     private String apellidos;
-    private  int horasClase;
+    private int horasClase;
 }

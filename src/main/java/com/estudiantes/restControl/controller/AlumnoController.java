@@ -15,41 +15,45 @@ import java.util.List;
 @RequestMapping("/alumnos")
 @CrossOrigin(origins = {"*"})
 public class AlumnoController {
-    private final AlumnoRepository alumnoService;
+    private final AlumnoRepository alumnoRep;
 
-    public AlumnoController(AlumnoRepository alumnoService){
-        this.alumnoService = alumnoService;
+    public AlumnoController(AlumnoRepository alumnoRep){
+        this.alumnoRep = alumnoRep;
     }
 
     @GetMapping("")
+    @Operation(summary = "Obtener todos los alumnos")
     public ResponseEntity<List<AlumnoDTO>> getAllAlumnos() {
-        List<AlumnoDTO> alumnos = this.alumnoService.getAlumnos();
+        List<AlumnoDTO> alumnos = this.alumnoRep.getAlumnos();
         return new ResponseEntity<>(alumnos, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Obtener un alumno por su id")
     public ResponseEntity<AlumnoDTO> getAlumnoById(@PathVariable int id){
-        AlumnoDTO newAlumno = this.alumnoService.getAlumnoById(id);
-        return new ResponseEntity<>(newAlumno,HttpStatus.OK);
+        AlumnoDTO Alumno = this.alumnoRep.getAlumnoById(id);
+        return new ResponseEntity<>(Alumno, HttpStatus.OK);
     }
 
     @PostMapping
-    @Operation(summary = "Create a new student")
-    public ResponseEntity<AlumnoDTO> createAlumno(@RequestBody Alumno info){
-        AlumnoDTO newAlumno = this.alumnoService.createAlumno(info);
-        return new ResponseEntity<>(newAlumno,HttpStatus.OK);
+    @Operation(summary = "Agregar un alumno.")
+    public ResponseEntity<AlumnoDTO> createAlumno(@RequestBody Alumno AlumnoN){
+        AlumnoDTO Alumno = this.alumnoRep.createAlumno(AlumnoN);
+        return new ResponseEntity<>(Alumno, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AlumnoDTO> editAlumnoByid(@RequestBody Alumno info, @PathVariable int id){
-        AlumnoDTO newAlumno = this.alumnoService.actualizar(id,info);
-        return new ResponseEntity<>(newAlumno,HttpStatus.OK);
+    @Operation(summary = "Modificar un alumno por su id.")
+    public ResponseEntity<AlumnoDTO> editAlumnoByid(@RequestBody Alumno AlumnoE, @PathVariable int id){
+        AlumnoDTO Alumno = this.alumnoRep.actualizar(id, AlumnoE);
+        return new ResponseEntity<>(Alumno, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Eliminar un alumno por su id.")
     public ResponseEntity<AlumnoDTO> delete(@PathVariable int id){
-        AlumnoDTO newAlumno = this.alumnoService.deleteAlumno(id);
-        return new ResponseEntity<>(newAlumno,HttpStatus.OK);
+        AlumnoDTO AlumnoB = this.alumnoRep.deleteAlumno(id);
+        return new ResponseEntity<>(AlumnoB, HttpStatus.OK);
     }
 
 }

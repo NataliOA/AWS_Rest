@@ -12,9 +12,8 @@ public class AlumnoRepository {
 
     public AlumnoRepository() {
         this.alumnos = new ArrayList<>();
-        // Puedes inicializar la lista con algunos valores predeterminados si lo deseas
-         this.alumnos.add(new AlumnoDTO(1,"Nombre1", "apellido", 12234, 90.0));
-         this.alumnos.add(new AlumnoDTO(2,"Nombre1", "apellido", 12234, 90.0));
+        
+        this.alumnos.add(new AlumnoDTO(0,"Andrea Natalí", "Ortega Aguilar", 1060, 92.0));
     }
 
     public List<AlumnoDTO> getAlumnos() {
@@ -30,11 +29,11 @@ public class AlumnoRepository {
         return null;
     }
 
-    public AlumnoDTO createAlumno(Alumno alumnoAux){
-        AlumnoDTO nuevoAlumno = new AlumnoDTO(alumnoAux.getId(), alumnoAux.getNombres(), alumnoAux.getApellidos(), alumnoAux.getMatricula(), alumnoAux.getPromedio());
+    public AlumnoDTO createAlumno(Alumno nuevo){
+        AlumnoDTO AlumnoN = new AlumnoDTO(nuevo.getId(), nuevo.getNombres(), nuevo.getApellidos(), nuevo.getMatricula(), nuevo.getPromedio());
 
-        alumnos.add(nuevoAlumno);
-        return nuevoAlumno;
+        alumnos.add(AlumnoN);
+        return AlumnoN;
     }
 
     public AlumnoDTO actualizar(int id, Alumno alumnoAux){
