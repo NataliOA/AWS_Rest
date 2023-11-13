@@ -42,11 +42,11 @@ public class ProfesorRepository {
 
     private boolean verifInfo(Profesor info){
         boolean verificado = true;
-        if((info.getNombres().isEmpty()||info.getNombres()==null)&&!validarString(info.getNombres())){
+        if((info.getNombres().isEmpty()||info.getNombres()==null)||!validarString(info.getNombres())){
             verificado = false;
             msg += "Los nombres deben ser cadena de texto y no estar vacíos. ";
         }
-        if((!info.getApellidos().isEmpty()||info.getApellidos()!=null)&&!validarString(info.getApellidos())){
+        if((!info.getApellidos().isEmpty()||info.getApellidos()!=null)||!validarString(info.getApellidos())){
             verificado = false;
             msg += "Los apellidos deben ser cadena de texto y no estar vacíos. ";
         }
@@ -71,14 +71,23 @@ public class ProfesorRepository {
     }
 
     public ProfesorDTO actualizar(int id, Profesor profAux){
-        Optional<ProfesorDTO> profExistente = profs.stream().filter(a -> a.getId() == id).findFirst();
-        profExistente.ifPresent(value -> {
-            value.setNombres(profAux.getNombres());
-            value.setApellidos(profAux.getApellidos());
-            value.setNumeroEmpleado(profAux.getNoEmpleado());
-            value.setHorasClase(profAux.getHorasClase());
-        });
-        msg = "No se encontró el id solicitado.";
+        ProfesorDTO profAEditar = null;
+        profAEditar = getProfById(id);
+
+        if (profAEditar != null) {
+            msg = new String();
+            if(verifInfo(profAux)){
+                profAEditar.setNumeroEmpleado(profAux.getHorasClase());
+                profAEditar.setNombres(profAux.getNombres());
+                profAEditar.setApellidos(profAux.getApellidos());
+                profAEditar.setHorasClase(profAux.getHorasClase());
+                profs.set(id,profAEditar);
+                return profAEditar;
+            }
+        } else {
+            msg = "No se encontró el id solicitado.";
+        }
+        
         return null;
     }
 

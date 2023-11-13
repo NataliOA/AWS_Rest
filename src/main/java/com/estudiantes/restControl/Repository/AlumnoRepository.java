@@ -43,11 +43,11 @@ public class AlumnoRepository {
 
     private boolean verifInfo(Alumno info){
         boolean verificado = true;
-        if((info.getNombres().isEmpty()||info.getNombres()==null)&&!validarString(info.getNombres())){
+        if((info.getNombres().isEmpty()||info.getNombres()==null)||!validarString(info.getNombres())){
             verificado = false;
             msg += "Los nombres deben ser cadena de texto y no estar vacíos. ";
         }
-        if((!info.getApellidos().isEmpty()||info.getApellidos()!=null)&&!validarString(info.getApellidos())){
+        if((!info.getApellidos().isEmpty()||info.getApellidos()!=null)||!validarString(info.getApellidos())){
             verificado = false;
             msg += "Los apellidos deben ser cadena de texto y no estar vacíos. ";
         }
@@ -72,14 +72,23 @@ public class AlumnoRepository {
     }
 
     public AlumnoDTO actualizar(int id, Alumno alumnoAux){
-        Optional<AlumnoDTO> alumnoExistente = alumnos.stream().filter(a -> a.getId() == id).findFirst();
-        alumnoExistente.ifPresent(value -> {
-            value.setNombres(alumnoAux.getNombres());
-            value.setApellidos(alumnoAux.getApellidos());
-            value.setMatricula(alumnoAux.getMatricula());
-            value.setPromedio(alumnoAux.getPromedio());
-        });
-        msg = "No se encontró el id solicitado.";
+        AlumnoDTO alumnoAEditar = null;
+        alumnoAEditar = getAlumnoById(id);
+
+        if (alumnoAEditar != null) {
+            msg = new String();
+            if(verifInfo(alumnoAux)){
+                alumnoAEditar.setNombres(alumnoAux.getNombres());
+                alumnoAEditar.setApellidos(alumnoAux.getApellidos());
+                alumnoAEditar.setMatricula(alumnoAux.getMatricula());
+                alumnoAEditar.setPromedio(alumnoAux.getPromedio());
+                alumnos.set(id,alumnoAEditar);
+                return alumnoAEditar;
+            }
+        } else {
+            msg = "No se encontró el id solicitado.";
+        }
+
         return null;
     }
 
