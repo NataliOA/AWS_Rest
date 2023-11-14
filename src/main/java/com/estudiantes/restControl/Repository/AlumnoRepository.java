@@ -31,7 +31,6 @@ public class AlumnoRepository {
     }
 
     public AlumnoDTO createAlumno(Alumno nuevo){
-        msg = new String();
         AlumnoDTO AlumnoN = new AlumnoDTO(nuevo.getId(),nuevo.getNombres(), nuevo.getApellidos(), nuevo.getMatricula(), nuevo.getPromedio());
         alumnos.add(AlumnoN);
         return AlumnoN;

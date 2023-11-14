@@ -10,7 +10,7 @@ public class Profesor {
     private int id;
 
     @Positive(message = "noEmpleado debe ser un número positivo.")
-    private int noEmpleado;
+    private int numeroEmpleado;
 
     @NotBlank
     @NotNull

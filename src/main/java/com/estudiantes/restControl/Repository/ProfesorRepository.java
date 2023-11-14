@@ -30,8 +30,7 @@ public class ProfesorRepository {
     }
 
     public ProfesorDTO createProf(Profesor nuevo){
-        msg = new String();
-        ProfesorDTO profesorN = new ProfesorDTO(nuevo.getId(), nuevo.getNoEmpleado(),nuevo.getNombres(), nuevo.getApellidos(),nuevo.getHorasClase());
+        ProfesorDTO profesorN = new ProfesorDTO(nuevo.getId(), nuevo.getNumeroEmpleado(),nuevo.getNombres(), nuevo.getApellidos(),nuevo.getHorasClase());
         profs.add(profesorN);
         return profesorN;
     }
@@ -43,7 +42,7 @@ public class ProfesorRepository {
         if (profAEditar != null) {
             msg = new String();
             profAEditar.setId(profAux.getId());
-            profAEditar.setNumeroEmpleado(profAux.getNoEmpleado());
+            profAEditar.setNumeroEmpleado(profAux.getNumeroEmpleado());
             profAEditar.setNombres(profAux.getNombres());
             profAEditar.setApellidos(profAux.getApellidos());
             profAEditar.setHorasClase(profAux.getHorasClase());
