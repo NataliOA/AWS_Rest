@@ -1,7 +1,6 @@
 package com.estudiantes.restControl.controller;
 
 import com.estudiantes.restControl.dto.AlumnoDTO;
-import com.estudiantes.restControl.dto.responseDTO;
 import com.estudiantes.restControl.dto.Model.Alumno;
 import com.estudiantes.restControl.Repository.AlumnoRepository;
 
@@ -33,52 +32,42 @@ public class AlumnoController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Obtener un alumno por su id")
-    public ResponseEntity<responseDTO> getAlumnoById(@PathVariable int id){
+    public ResponseEntity<AlumnoDTO> getAlumnoById(@PathVariable int id){
         AlumnoDTO Alumno = this.alumnoRep.getAlumnoById(id);
-        responseDTO resp;
         if(Alumno!=null){
-            resp = new responseDTO(null, Alumno);
-            return new ResponseEntity<>(resp, HttpStatus.OK);
+            return new ResponseEntity<>(Alumno, HttpStatus.OK);
         }else{
-            resp = new responseDTO(alumnoRep.getMsg(), Alumno);
-            return new ResponseEntity<>(resp, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(Alumno, HttpStatus.NOT_FOUND);
         }
         
     }
 
     @PostMapping
     @Operation(summary = "Agregar un alumno.")
-    public ResponseEntity<responseDTO> createAlumno(@Valid @RequestBody Alumno AlumnoN){
+    public ResponseEntity<AlumnoDTO> createAlumno(@Valid @RequestBody Alumno AlumnoN){
         AlumnoDTO Alumno = this.alumnoRep.createAlumno(AlumnoN);
-        responseDTO resp = new responseDTO(null, Alumno);
-        return new ResponseEntity<>(resp, HttpStatus.CREATED);
+        return new ResponseEntity<>(Alumno, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Modificar un alumno por su id.")
-    public ResponseEntity<responseDTO> editAlumnoByid(@Valid @RequestBody Alumno AlumnoE, @PathVariable int id){
+    public ResponseEntity<AlumnoDTO> editAlumnoByid(@Valid @RequestBody Alumno AlumnoE, @PathVariable int id){
         AlumnoDTO Alumno = this.alumnoRep.actualizar(id, AlumnoE);
-        responseDTO resp;
         if(Alumno!=null){
-            resp = new responseDTO(null, Alumno);
-            return new ResponseEntity<>(resp, HttpStatus.OK);
+            return new ResponseEntity<>(Alumno, HttpStatus.OK);
         }else{
-            resp = new responseDTO(alumnoRep.getMsg(), Alumno);
-            return new ResponseEntity<>(resp, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(Alumno, HttpStatus.NOT_FOUND);
         }
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Eliminar un alumno por su id.")
-    public ResponseEntity<responseDTO> delete(@PathVariable int id){
+    public ResponseEntity<AlumnoDTO> delete(@PathVariable int id){
         AlumnoDTO AlumnoB = this.alumnoRep.deleteAlumno(id);
-        responseDTO resp;
         if(AlumnoB!=null){
-            resp = new responseDTO(null, AlumnoB);
-            return new ResponseEntity<>(resp, HttpStatus.OK);
+            return new ResponseEntity<>(AlumnoB, HttpStatus.OK);
         }else{
-            resp = new responseDTO(alumnoRep.getMsg(), AlumnoB);
-            return new ResponseEntity<>(resp, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(AlumnoB, HttpStatus.NOT_FOUND);
         }
     }
 
