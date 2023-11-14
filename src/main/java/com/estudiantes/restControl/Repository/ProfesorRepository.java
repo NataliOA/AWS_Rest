@@ -38,6 +38,7 @@ public class ProfesorRepository {
     public ProfesorDTO actualizar(int id, Profesor profAux){
         ProfesorDTO profAEditar = null;
         profAEditar = getProfById(id);
+        int pos = profs.indexOf(profAEditar);
 
         if (profAEditar != null) {
             msg = new String();
@@ -46,7 +47,7 @@ public class ProfesorRepository {
             profAEditar.setNombres(profAux.getNombres());
             profAEditar.setApellidos(profAux.getApellidos());
             profAEditar.setHorasClase(profAux.getHorasClase());
-            profs.set(id,profAEditar);
+            profs.set(pos,profAEditar);
             return profAEditar;
         } else {
             msg = "No se encontró el id solicitado.";

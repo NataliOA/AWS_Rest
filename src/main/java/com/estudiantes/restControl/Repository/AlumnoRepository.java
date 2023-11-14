@@ -39,6 +39,7 @@ public class AlumnoRepository {
     public AlumnoDTO actualizar(int id, Alumno alumnoAux){
         AlumnoDTO alumnoAEditar = null;
         alumnoAEditar = getAlumnoById(id);
+        int pos = alumnos.indexOf(alumnoAEditar);
 
         if (alumnoAEditar != null) {
             msg = new String();
@@ -47,7 +48,7 @@ public class AlumnoRepository {
             alumnoAEditar.setApellidos(alumnoAux.getApellidos());
             alumnoAEditar.setMatricula(alumnoAux.getMatricula());
             alumnoAEditar.setPromedio(alumnoAux.getPromedio());
-            alumnos.set(id,alumnoAEditar);
+            alumnos.set(pos,alumnoAEditar);
             return alumnoAEditar;
         } else {
             msg = "No se encontró el id solicitado.";
