@@ -6,6 +6,8 @@ import com.estudiantes.restControl.dto.Model.Alumno;
 import com.estudiantes.restControl.Repository.AlumnoRepository;
 
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,21 +48,15 @@ public class AlumnoController {
 
     @PostMapping
     @Operation(summary = "Agregar un alumno.")
-    public ResponseEntity<responseDTO> createAlumno(@RequestBody Alumno AlumnoN){
+    public ResponseEntity<responseDTO> createAlumno(@Valid @RequestBody Alumno AlumnoN){
         AlumnoDTO Alumno = this.alumnoRep.createAlumno(AlumnoN);
-        responseDTO resp;
-        if(Alumno!=null){
-            resp = new responseDTO(null, Alumno);
-            return new ResponseEntity<>(resp, HttpStatus.CREATED);
-        }else{
-            resp = new responseDTO(alumnoRep.getMsg(), Alumno);
-            return new ResponseEntity<>(resp, HttpStatus.BAD_REQUEST);
-        }
+        responseDTO resp = new responseDTO(null, Alumno);
+        return new ResponseEntity<>(resp, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Modificar un alumno por su id.")
-    public ResponseEntity<responseDTO> editAlumnoByid(@RequestBody Alumno AlumnoE, @PathVariable int id){
+    public ResponseEntity<responseDTO> editAlumnoByid(@Valid @RequestBody Alumno AlumnoE, @PathVariable int id){
         AlumnoDTO Alumno = this.alumnoRep.actualizar(id, AlumnoE);
         responseDTO resp;
         if(Alumno!=null){

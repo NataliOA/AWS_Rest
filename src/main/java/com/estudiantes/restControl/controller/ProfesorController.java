@@ -12,6 +12,7 @@ import com.estudiantes.restControl.dto.responseDTO;
 import com.estudiantes.restControl.dto.Model.Profesor;
 
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/profesores")
@@ -47,22 +48,16 @@ public class ProfesorController {
 
     @PostMapping
     @Operation(summary = "Agregar un profesor.")
-    public ResponseEntity<responseDTO> createProf(@RequestBody Profesor ProfesorN){
+    public ResponseEntity<responseDTO> createProf(@Valid @RequestBody Profesor ProfesorN){
         ProfesorDTO Profesor = this.profesorRep.createProf(ProfesorN);
-        responseDTO resp;
-        if(Profesor != null){
-            resp = new responseDTO(null, Profesor);
+        responseDTO resp = new responseDTO(null, Profesor);
             return new ResponseEntity<>(resp, HttpStatus.CREATED);
-        }else{
-            resp = new responseDTO(profesorRep.getMsg(), Profesor);
-            return new ResponseEntity<>(resp, HttpStatus.BAD_REQUEST);
-        }
         
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Modificar un profesor por su id.")
-    public ResponseEntity<responseDTO> editProfByid(@RequestBody Profesor ProfE, @PathVariable int id){
+    public ResponseEntity<responseDTO> editProfByid(@Valid @RequestBody Profesor ProfE, @PathVariable int id){
         ProfesorDTO Profesor = this.profesorRep.actualizar(id, ProfE);
         responseDTO resp;
         if(Profesor != null){
