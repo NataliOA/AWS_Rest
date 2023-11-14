@@ -1,0 +1,14 @@
+com\estudiantes\restControl\dto\AlumnoDTO.class
+com\estudiantes\restControl\Main.class
+com\estudiantes\restControl\dto\Model\Profesor.class
+com\estudiantes\restControl\dto\ProfesorDTO$ProfesorDTOBuilder.class
+com\estudiantes\restControl\dto\Model\Profesor$ProfesorBuilder.class
+com\estudiantes\restControl\controller\AlumnoController.class
+com\estudiantes\restControl\controller\ProfesorController.class
+com\estudiantes\restControl\dto\ProfesorDTO.class
+com\estudiantes\restControl\dto\Model\Alumno$AlumnoBuilder.class
+com\estudiantes\restControl\dto\AlumnoDTO$AlumnoDTOBuilder.class
+com\estudiantes\restControl\Repository\AlumnoRepository.class
+com\estudiantes\restControl\Repository\ProfesorRepository.class
+com\estudiantes\restControl\config\OpenAPIConfig.class
+com\estudiantes\restControl\dto\Model\Alumno.class
