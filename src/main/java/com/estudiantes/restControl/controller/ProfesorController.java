@@ -51,7 +51,7 @@ public class ProfesorController {
     public ResponseEntity<responseDTO> createProf(@Valid @RequestBody Profesor ProfesorN){
         ProfesorDTO Profesor = this.profesorRep.createProf(ProfesorN);
         responseDTO resp = new responseDTO(null, Profesor);
-            return new ResponseEntity<>(resp, HttpStatus.CREATED);
+        return new ResponseEntity<>(resp, HttpStatus.CREATED);
         
     }
 

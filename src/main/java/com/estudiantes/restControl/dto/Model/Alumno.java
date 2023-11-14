@@ -6,6 +6,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 public class Alumno {
+    @Positive(message = "El id debe ser positivo")
     private int id;
 
     @NotBlank

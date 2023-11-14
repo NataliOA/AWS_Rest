@@ -9,19 +9,11 @@ import lombok.*;
 public class ProfesorDTO {
     private int id;
 
-    @NotBlank
-    @NotNull
     private int numeroEmpleado;
 
-    @NotBlank
-    @NotNull
     private String nombres;
 
-    @NotBlank
-    @NotNull
     private String apellidos;
 
-    @NotBlank
-    @NotNull
     private int horasClase;
 }

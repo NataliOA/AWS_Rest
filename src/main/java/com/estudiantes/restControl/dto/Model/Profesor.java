@@ -6,9 +6,10 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 public class Profesor {
+    @Positive(message = "El id debe ser positivo.")
     private int id;
 
-    @Positive(message = "noEmpleado debe ser un número positivo")
+    @Positive(message = "noEmpleado debe ser un número positivo.")
     private int noEmpleado;
 
     @NotBlank
@@ -19,6 +20,6 @@ public class Profesor {
     @NotNull
     private String apellidos;
 
-    @Positive(message="horasClase debe ser un número positivo")
+    @Positive(message="horasClase debe ser un número positivo.")
     private int horasClase;
 }

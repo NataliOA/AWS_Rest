@@ -32,7 +32,7 @@ public class AlumnoRepository {
 
     public AlumnoDTO createAlumno(Alumno nuevo){
         msg = new String();
-        AlumnoDTO AlumnoN = new AlumnoDTO(alumnos.size(),nuevo.getNombres(), nuevo.getApellidos(), nuevo.getMatricula(), nuevo.getPromedio());
+        AlumnoDTO AlumnoN = new AlumnoDTO(nuevo.getId(),nuevo.getNombres(), nuevo.getApellidos(), nuevo.getMatricula(), nuevo.getPromedio());
         alumnos.add(AlumnoN);
         return AlumnoN;
     }
@@ -43,6 +43,7 @@ public class AlumnoRepository {
 
         if (alumnoAEditar != null) {
             msg = new String();
+            alumnoAEditar.setId(alumnoAux.getId());
             alumnoAEditar.setNombres(alumnoAux.getNombres());
             alumnoAEditar.setApellidos(alumnoAux.getApellidos());
             alumnoAEditar.setMatricula(alumnoAux.getMatricula());
