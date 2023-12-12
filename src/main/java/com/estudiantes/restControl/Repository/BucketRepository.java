@@ -22,8 +22,7 @@ public class BucketRepository{
             bucket.putObject(new PutObjectRequest(buck, key_name, archivo));
         } catch (AmazonServiceException e) {
             System.out.println("Error al subir el archivo al bucket:");
-            System.out.println(e.getErrorCode());
-            System.out.println("Mensaje de error: " + e.getErrorMessage());
+            System.out.println(e.getErrorMessage());
             throw e;
         }
     }

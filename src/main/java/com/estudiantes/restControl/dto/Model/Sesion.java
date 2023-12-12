@@ -9,7 +9,7 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@DynamoDBTable(tableName = "accesos")
+@DynamoDBTable(tableName = "Student-Access")
 public class Sesion {
     @DynamoDBHashKey
     private String id;

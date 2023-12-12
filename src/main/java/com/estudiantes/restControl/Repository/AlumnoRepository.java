@@ -46,6 +46,8 @@ public class AlumnoRepository {
             alumnoAEditar.setApellidos(alumnoAux.getApellidos());
             alumnoAEditar.setMatricula(alumnoAux.getMatricula());
             alumnoAEditar.setPromedio(alumnoAux.getPromedio());
+            alumnoAEditar.setPassword(alumnoAux.getPassword());
+            alumnoAEditar.setFotoPerfilUrl(alumnoAux.getFotoPerfilUrl());
             alumnoT.save(alumnoAEditar);
             return alumnoAEditar;
         } 
@@ -114,18 +116,20 @@ public class AlumnoRepository {
     public Alumno subirFoto(int id, MultipartFile archivo){
         String nombre = archivo.getOriginalFilename();
         try {
-            File tempFile = convertMultiPartToFile(archivo);
+            File archivoTemp = convertir(archivo);
             Alumno alumnoAux = getAlumnoById(id);
             if (alumnoAux != null) {
                 Alumno alumno = new Alumno();
+                alumno.setId(alumnoAux.getId());
                 alumno.setNombres(alumnoAux.getNombres());
                 alumno.setApellidos(alumnoAux.getApellidos());
                 alumno.setMatricula(alumnoAux.getMatricula());
-                alumno.setPromedio(alumnoAux.getPromedio());;
-                alumno.setFotoPerfilUrl("https://s3.amazonaws.com/proyectoimgao.com/"+archivo);
-                Alumno alumnoActualizado = alumnoT.save(alumno);
-                bucketRep.uploadFileToS3( "proyectoimgao.com", nombre, tempFile);
-                return alumnoActualizado;
+                alumno.setPromedio(alumnoAux.getPromedio());
+                alumno.setPassword(alumnoAux.getPassword());
+                alumno.setFotoPerfilUrl("https://s3.amazonaws.com/proyectoimgao.com/"+nombre);
+                Alumno alumnoAct = alumnoT.save(alumno);
+                bucketRep.uploadFileToS3( "proyectoimgao.com", nombre, archivoTemp);
+                return alumnoAct;
             } else {
                 return null;
             }
@@ -134,25 +138,29 @@ public class AlumnoRepository {
         }
     }
 
-    private File convertMultiPartToFile(MultipartFile file) throws IOException {
-        File convFile = new File(file.getOriginalFilename());
-        FileOutputStream fos = new FileOutputStream(convFile);
-        fos.write(file.getBytes());
+    private File convertir(MultipartFile archivo) throws IOException {
+        File archivoConv = new File(archivo.getOriginalFilename());
+        FileOutputStream fos = new FileOutputStream(archivoConv);
+        fos.write(archivo.getBytes());
         fos.close();
-        return convFile;
+        return archivoConv;
     }
 
     public Alumno enviarInfo(int id){
         Alumno alumnoAux = getAlumnoById(id);
         if(alumnoAux!= null){
             Alumno alumno = new Alumno();
+            alumno.setId(alumnoAux.getId());
             alumno.setNombres(alumnoAux.getNombres());
             alumno.setApellidos(alumnoAux.getApellidos());
             alumno.setMatricula(alumnoAux.getMatricula());
             alumno.setPromedio(alumnoAux.getPromedio());
+            alumno.setPassword(alumnoAux.getPassword());
+            alumno.setFotoPerfilUrl(alumnoAux.getFotoPerfilUrl());
             snsRep.enviarCorreo("A continuación se despliega la información del alumno "+alumno.getId()
             +"\nNombre(s): "+alumno.getNombres()
-            +"\nApellidos: "+alumno.getApellidos(), "AWS - API Rest");
+            +"\nApellidos: "+alumno.getApellidos()
+            +"\nPromedio: "+alumno.getPromedio(), "AWS - API Rest");
             return alumno;
         }else{
             return null;

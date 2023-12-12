@@ -9,7 +9,6 @@ import lombok.*;
 @Table(name="profesor")
 public class Profesor {
     @Id
-    @Positive(message = "El id debe ser positivo.")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 

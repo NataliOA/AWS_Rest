@@ -15,9 +15,10 @@ public class NotificacionRepository{
 
     public void enviarCorreo(String cuerpo, String asunto){
         PublishResult res = sns.publish(new PublishRequest()
-                .withTopicArn("arn:aws:sns:us-east-1:293603627624:sicei-topic")
+                .withTopicArn("arn:aws:sns:us-east-1:944048634042:Proyecto-AWS")
                 .withMessage(cuerpo)
         );
+        System.out.println(res);
     }
 
 }

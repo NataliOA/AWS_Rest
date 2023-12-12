@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: mx.uady.aws.tests.ProfesoresApiTest
+-------------------------------------------------------------------------------
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.07 s - in mx.uady.aws.tests.ProfesoresApiTest

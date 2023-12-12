@@ -13,29 +13,38 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 @Configuration
 public class AWSConfig {
 
-    private static final String CREDENTIALS_FILE_PATH = "PrimeraEntrega/AWS_Creds.txt";
+    private static final String CREDENTIALS_FILE_PATH = "AWS_Creds.txt";
 
     private String accessKey;
     private String secretKey;
     private String sessiontoken;
-    @Value("${amazon.aws.sessiontoken}")
+    @Value("${amazon.aws.region}")
     private String region;
 
-    public AWSConfig() throws IOException {
-        List<String> lines = Files.readAllLines(Paths.get(CREDENTIALS_FILE_PATH));
-        // Asumiendo que el archivo tiene el formato especificado previamente
-        accessKey = lines.get(0).trim();
-        secretKey = lines.get(1).trim();
-        sessiontoken = lines.get(2).trim();
+    public AWSConfig() {
+        Resource resource = new ClassPathResource(CREDENTIALS_FILE_PATH);
+        try (InputStream inputStream = resource.getInputStream();
+             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+
+            accessKey = reader.readLine().trim();
+            secretKey = reader.readLine().trim();
+            sessiontoken = reader.readLine().trim();
+        } catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+        
     }
 
     private AWSStaticCredentialsProvider getCredentialsProvider() {

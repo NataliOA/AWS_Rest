@@ -14,7 +14,6 @@ import lombok.*;
 public class Alumno {
 
     @Id
-    @Positive(message = "El id debe ser positivo")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
