@@ -10,7 +10,7 @@ import lombok.*;
 public class Profesor {
     @Id
     @Positive(message = "El id debe ser positivo.")
-    @GeneratedValue(str)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Positive(message = "noEmpleado debe ser un número positivo.")

@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.estudiantes.restControl.Repository.ProfesorRepository;
-import com.estudiantes.restControl.dto.ProfesorDTO;
 import com.estudiantes.restControl.dto.Model.Profesor;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -63,8 +62,8 @@ public class ProfesorController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Eliminar un profesor por su id.")
-    public ResponseEntity<ProfesorDTO> delete(@PathVariable int id){
-        ProfesorDTO ProfesorB = this.profesorRep.deleteProf(id);
+    public ResponseEntity<Profesor> delete(@PathVariable int id){
+        Profesor ProfesorB = this.profesorRep.deleteProf(id);
         if(ProfesorB != null){
             return new ResponseEntity<>(ProfesorB, HttpStatus.OK);
         }
