@@ -2,12 +2,8 @@ package com.estudiantes.restControl.Repository;
 
 import com.estudiantes.restControl.dto.Model.Alumno;
 import com.estudiantes.restControl.dto.Model.Sesion;
-
-import lombok.Getter;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
