@@ -19,21 +19,22 @@ import java.util.List;
 public class AlumnoController {
     private final AlumnoRepository alumnoRep;
 
+    @Autowired
     public AlumnoController(AlumnoRepository alumnoRep){
         this.alumnoRep = alumnoRep;
     }
 
     @GetMapping("")
     @Operation(summary = "Obtener todos los alumnos")
-    public ResponseEntity<List<AlumnoDTO>> getAllAlumnos() {
-        List<AlumnoDTO> alumnos = this.alumnoRep.getAlumnos();
+    public ResponseEntity<List<Alumno>> getAllAlumnos() {
+        List<Alumno> alumnos = this.alumnoRep.getAllAlumnos();
         return new ResponseEntity<>(alumnos, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Obtener un alumno por su id")
-    public ResponseEntity<AlumnoDTO> getAlumnoById(@PathVariable int id){
-        AlumnoDTO Alumno = this.alumnoRep.getAlumnoById(id);
+    public ResponseEntity<Alumno> getAlumnoById(@PathVariable int id){
+        Alumno Alumno = this.alumnoRep.getAlumnoById(id);
         if(Alumno!=null){
             return new ResponseEntity<>(Alumno, HttpStatus.OK);
         }else{
@@ -44,15 +45,15 @@ public class AlumnoController {
 
     @PostMapping
     @Operation(summary = "Agregar un alumno.")
-    public ResponseEntity<AlumnoDTO> createAlumno(@Valid @RequestBody Alumno AlumnoN){
-        AlumnoDTO Alumno = this.alumnoRep.createAlumno(AlumnoN);
+    public ResponseEntity<Alumno> createAlumno(@Valid @RequestBody Alumno AlumnoN){
+        Alumno Alumno = this.alumnoRep.createAlumno(AlumnoN);
         return new ResponseEntity<>(Alumno, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Modificar un alumno por su id.")
-    public ResponseEntity<AlumnoDTO> editAlumnoByid(@Valid @RequestBody Alumno AlumnoE, @PathVariable int id){
-        AlumnoDTO Alumno = this.alumnoRep.actualizar(id, AlumnoE);
+    public ResponseEntity<Alumno> editAlumnoByid(@Valid @RequestBody Alumno AlumnoE, @PathVariable int id){
+        Alumno Alumno = this.alumnoRep.actualizar(id, AlumnoE);
         if(Alumno!=null){
             return new ResponseEntity<>(Alumno, HttpStatus.OK);
         }else{
@@ -62,8 +63,8 @@ public class AlumnoController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Eliminar un alumno por su id.")
-    public ResponseEntity<AlumnoDTO> delete(@PathVariable int id){
-        AlumnoDTO AlumnoB = this.alumnoRep.deleteAlumno(id);
+    public ResponseEntity<Alumno> delete(@PathVariable int id){
+        Alumno AlumnoB = this.alumnoRep.deleteAlumno(id);
         if(AlumnoB!=null){
             return new ResponseEntity<>(AlumnoB, HttpStatus.OK);
         }else{

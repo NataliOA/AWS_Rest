@@ -25,15 +25,15 @@ public class ProfesorController {
 
     @GetMapping("")
     @Operation(summary = "Obtener todos los profesores.")
-    public ResponseEntity<List<ProfesorDTO>> getAllAlumnos() {
-        List<ProfesorDTO> profs = this.profesorRep.getProfs();
+    public ResponseEntity<List<Profesor>> getAllProfesores() {
+        List<Profesor> profs = this.profesorRep.getAllProfesores();
         return new ResponseEntity<>(profs, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Obtener un profesor por su id.")
-    public ResponseEntity<ProfesorDTO> getProfById(@PathVariable int id){
-        ProfesorDTO Prof = this.profesorRep.getProfById(id);
+    public ResponseEntity<Profesor> getProfById(@PathVariable int id){
+        Profesor Prof = this.profesorRep.getProfById(id);
         if(Prof != null){
             return new ResponseEntity<>(Prof, HttpStatus.OK);
         }else{
@@ -44,16 +44,16 @@ public class ProfesorController {
 
     @PostMapping
     @Operation(summary = "Agregar un profesor.")
-    public ResponseEntity<ProfesorDTO> createProf(@Valid @RequestBody Profesor ProfesorN){
-        ProfesorDTO Profesor = this.profesorRep.createProf(ProfesorN);
+    public ResponseEntity<Profesor> createProf(@Valid @RequestBody Profesor ProfesorN){
+        Profesor Profesor = this.profesorRep.createProf(ProfesorN);
         return new ResponseEntity<>(Profesor, HttpStatus.CREATED);
         
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Modificar un profesor por su id.")
-    public ResponseEntity<ProfesorDTO> editProfByid(@Valid @RequestBody Profesor ProfE, @PathVariable int id){
-        ProfesorDTO Profesor = this.profesorRep.actualizar(id, ProfE);
+    public ResponseEntity<Profesor> editProfByid(@Valid @RequestBody Profesor ProfE, @PathVariable int id){
+        Profesor Profesor = this.profesorRep.actualizar(id, ProfE);
         if(Profesor != null){
             return new ResponseEntity<>(Profesor, HttpStatus.OK);
         }else{

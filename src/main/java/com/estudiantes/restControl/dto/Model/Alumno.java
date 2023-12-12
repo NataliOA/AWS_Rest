@@ -1,12 +1,19 @@
 package com.estudiantes.restControl.dto.Model;
+import jakarta.annotation.Generated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.validation.constraints.*;
 import lombok.*;
+
 @Getter
 @Setter
-@Builder
-@AllArgsConstructor
+@Entity
+@Table(name="alumno")
 public class Alumno {
+
+    @Id
     @Positive(message = "El id debe ser positivo")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotBlank
@@ -23,4 +30,10 @@ public class Alumno {
     @DecimalMin(value = "0.00", message = "El promedio debe ser mayor o igual a 1")
     @DecimalMax(value = "100.00", message = "El promedio deber ser menor a 100")
     private double promedio;
+
+    private String fotoPerfilUrl;
+
+    private String password;
+
+
 }
