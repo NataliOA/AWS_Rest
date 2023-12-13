@@ -150,7 +150,6 @@ public class AlumnoRepository {
         Alumno alumnoAux = getAlumnoById(id);
         if(alumnoAux!= null){
             Alumno alumno = new Alumno();
-            alumno.setId(alumnoAux.getId());
             alumno.setNombres(alumnoAux.getNombres());
             alumno.setApellidos(alumnoAux.getApellidos());
             alumno.setMatricula(alumnoAux.getMatricula());

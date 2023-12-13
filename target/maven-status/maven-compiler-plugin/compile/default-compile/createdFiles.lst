@@ -1,0 +1,15 @@
+com\estudiantes\restControl\Main.class
+com\estudiantes\restControl\dto\Model\Profesor.class
+com\estudiantes\restControl\dto\Model\Sesion.class
+com\estudiantes\restControl\dto\Connection\ProfesorTable.class
+com\estudiantes\restControl\controller\AlumnoController.class
+com\estudiantes\restControl\Repository\SesionRepository.class
+com\estudiantes\restControl\controller\ProfesorController.class
+com\estudiantes\restControl\dto\Connection\AlumnoTable.class
+com\estudiantes\restControl\Repository\NotificacionRepository.class
+com\estudiantes\restControl\Repository\AlumnoRepository.class
+com\estudiantes\restControl\Repository\ProfesorRepository.class
+com\estudiantes\restControl\config\AWSConfig.class
+com\estudiantes\restControl\config\OpenAPIConfig.class
+com\estudiantes\restControl\dto\Model\Alumno.class
+com\estudiantes\restControl\Repository\BucketRepository.class

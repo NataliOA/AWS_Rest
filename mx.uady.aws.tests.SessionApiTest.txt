@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: mx.uady.aws.tests.SessionApiTest
--------------------------------------------------------------------------------
-Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.621 s - in mx.uady.aws.tests.SessionApiTest

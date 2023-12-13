@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: mx.uady.aws.tests.AlumnosApiTest
--------------------------------------------------------------------------------
-Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.515 s - in mx.uady.aws.tests.AlumnosApiTest
